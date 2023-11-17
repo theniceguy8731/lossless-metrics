@@ -16,7 +16,7 @@ def lz77_compress(input_text, window_size=10, buffer_size=10):
                     match_length = i
                     best_match = (distance, match_length)
 
-        if match_length > 0:
+        if match_length > 0 and index+match_length<len(input_text):
             compressed.append(best_match[0])
             compressed.append(best_match[1])
             compressed.append(ord(input_text[index + match_length]))
@@ -38,9 +38,6 @@ def lz77_decompress(compressed):
         distance = compressed[index]
         length = compressed[index + 1]
         literal_char = compressed[index + 2]
-        if index<100:
-            print(distance,length,chr(literal_char))
-            print(index)
         if distance > 0:
             start_index = max(0, len(decompressed) - distance)
             for _ in range(length):
