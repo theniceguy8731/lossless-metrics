@@ -13,6 +13,7 @@ with open(csv_file,"r+") as file:
 print(csv_data)
 
 algo_name=[]
+algo_name_copy=[]
 compression_time=[]
 decompression_time=[]
 compressed_file_size=[]
@@ -28,12 +29,17 @@ for i in csv_data:
         compression_ratio.append(int(i[3])/int(i[4]))
 
 print(algo_name,compression_time,decompression_time,compressed_file_size)
-
 # fig1 = plt.figure(figsize = (20, 10))
- 
+compression_time.pop()
+compression_time.pop(3)
+decompression_time.pop()
+decompression_time.pop(3)
+algo_name_copy=algo_name.copy()
+algo_name_copy.pop()
+algo_name_copy.pop(3)
 # creating the bar plot
 plt.figure(200)
-plt.bar(algo_name, compression_time, color ='maroon', 
+plt.bar(algo_name_copy, compression_time, color ='maroon', 
         width = 0.4)
 plt.xlabel("Algorithms")
 plt.ylabel("Compression time")
@@ -42,7 +48,7 @@ plt.show()
 
 
 plt.figure(300)
-plt.bar(algo_name, decompression_time, color ='maroon', 
+plt.bar(algo_name_copy, decompression_time, color ='maroon', 
         width = 0.4)
 plt.xlabel("Algorithms")
 plt.ylabel("Decompression time")
