@@ -137,13 +137,10 @@ Some of the advanced algorithms were taken from implementations done by the open
 In future we plan on copleting this project by impleting atleast 15 algorithms and making this project moduler as well as converting it into a python tool which can be used to compare the performance of all these 15 algorithms on any data set as per the liking of the user.
 
 ### Observations
-Significant observations or patterns observed during the benchmarking process are highlighted.
-
-## Conclusion
-
-
-### Performance Summary
-A recap of the performance of each compression algorithm is presented.
+![](./assets/Compression_file_size_comparision.png)
+![](./assets/Compression_ratio.png)
+![](./assets/Compression_time_comparision.png)
+![](./assets/Decompression_time_comparision.png)
 
 ### Methodology Improvements
 1. Diverse Data Set
