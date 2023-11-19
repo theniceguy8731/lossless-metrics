@@ -9,9 +9,9 @@ This project delves into the comprehensive benchmarking of eight lossless compre
 1. [Introduction](#introduction)
 2. [Existing Literature](#existing-literature)
 3. [Topic of Study](#topic-of-study)
-4. [Usage Instructions](#usage-instructions)
-5. [Conclusion](#conclusion)
-6. [Future Work](#future-work)
+4. [Benchmarking Methodology](#benchmarking-methodology)
+5. [Observations](#observations)
+6. [Future Vision](#future-vision)
 7. [Contributors](#contributors)
 
 ## Introduction
@@ -161,9 +161,6 @@ Our benchmarking methodology though rudimentry includes a stadnardised dataset a
 Some of the challenges we faced while making of this project including the lack of knowledge and mathematical experience in the field as most of the data compression algorithms studies and and most of the higher level algorithms expected us to have a good amount of mathematical prowess in probabilistic models, information theory, entropy and markov chains. However we were successful in implementing most of the algorithms on our own.
 Some of the advanced algorithms were taken from implementations done by the open source community along with the due credit given to them in the acknowledgments.
 
-### Future Vision
-In future we plan on copleting this project by impleting atleast 15 algorithms and making this project moduler as well as converting it into a python tool which can be used to compare the performance of all these 15 algorithms on any data set as per the liking of the user.
-
 ### Observations
 ![](./assets/Compression_file_size_comparision.png)
 ![](./assets/Compression_ratio.png)
@@ -171,6 +168,9 @@ In future we plan on copleting this project by impleting atleast 15 algorithms a
 ![](./assets/Decompression_time_comparision.png)
 
 <small>We have removed LZ78 and PPM from Compression time comparision Graph due to their exponentially high time consumption. Also We have removed PPM from Decompression time comparision Graph due to its exponentially high time consumption.</small>
+
+### Future Vision
+In future we plan on copleting this project by impleting atleast 15 algorithms and making this project moduler as well as converting it into a python tool which can be used to compare the performance of all these 15 algorithms on any data set as per the liking of the user.
 
 ### Methodology Improvements
 1. Diverse Data Set
