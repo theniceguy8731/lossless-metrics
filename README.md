@@ -4,6 +4,7 @@
 ## Abstract
 This project delves into the comprehensive benchmarking of eight lossless compression algorithms, evaluating their performance based on key parameters such as compression ratio, compression speed, and decompression speed. Additionally, the project explores the adaptability of algorithms to different file formats and considers licensing and patent implications. The implementation of algorithms and the plan to transform the project into a Python tool for wider use contribute to the practical significance of this study.
 
+[]()
 ## Table of Contents
 1. [Introduction](#introduction)
 2. [Existing Literature](#existing-literature)
@@ -99,32 +100,59 @@ Benchmarking studies are like performance tests for compression methods. They he
 Exploring lossless compression algorithms unveils their varied performance. Benchmarking studies act as our guide, helping us navigate and understand how well these algorithms work in different situations, ensuring we choose the right one for specific needs.
 
 ### Implemented Algorithms
+
 1. [**Huffman:**](./src/huffman/huffman.py)
-   - Huffman coding optimizes data compression by assigning shorter codes to more frequent symbols.
+   - **Inventor:** David A. Huffman
+   - **Advantage:** Huffman coding achieves efficient compression, especially for files with disparate symbol frequencies.
+   - **Disadvantage:** It may not perform optimally when the symbol frequencies are very similar.
+   - **Introduction:** Huffman coding optimizes data compression by assigning shorter codes to more frequent symbols.
 
 2. [**LZ77:**](./src/lz77/lz77.py)
-   - LZ77 is a dictionary-based algorithm that identifies and encodes repeated patterns in data.
+   - **Inventor:** Abraham Lempel and Jacob Ziv
+   - **Advantage:** LZ77 excels at compressing repetitive patterns in data.
+   - **Disadvantage:** It may not perform as well with highly random or unique data.
+   - **Introduction:** LZ77 is a dictionary-based algorithm that identifies and encodes repeated patterns in data.
 
 3. [**LZ78:**](./src/lz78/lz78.py)
-   - LZ78, another Lempel-Ziv variant, uses a dictionary-based approach to compress data by encoding repeated sequences.
+   - **Inventor:** Abraham Lempel and Jacob Ziv
+   - **Advantage:** LZ78 improves upon LZ77 by encoding repeated sequences more efficiently.
+   - **Disadvantage:** It may exhibit higher complexity in certain scenarios.
+   - **Introduction:** LZ78, another Lempel-Ziv variant, uses a dictionary-based approach to compress data by encoding repeated sequences.
 
 4. [**LZW:**](./src/lzw/lzw.py)
-   - Lempel-Ziv-Welch (LZW) is a widely used dictionary-based compression algorithm known for its use in GIF and Unix "compress."
+   - **Inventor:** Terry Welch
+   - **Advantage:** LZW is known for its simplicity and effectiveness, widely used in various applications.
+   - **Disadvantage:** It may face challenges with patent-related issues, impacting its open usage.
+   - **Introduction:** Lempel-Ziv-Welch (LZW) is a widely used dictionary-based compression algorithm known for its use in GIF and Unix "compress."
 
 5. [**Arithmetic:**](./src/arithmetic/arithmetic.py)
-   - Arithmetic coding is an entropy coding technique encoding entire symbols as fractional values within a range.
+   - **Inventor:** Elias Elias
+   - **Advantage:** Arithmetic coding can achieve better compression ratios compared to Huffman coding.
+   - **Disadvantage:** It requires more computational resources, making it slower in some cases.
+   - **Introduction:** Arithmetic coding is an entropy coding technique encoding entire symbols as fractional values within a range.
 
 6. [**MTF:**](./src/mtf)
-   - Move-to-Front (MTF) is a transform-based model that rearranges symbols based on their frequency, potentially improving compression efficiency.
+   - **Advantage:** MTF is simple and can be effective for certain types of data with localized patterns.
+   - **Disadvantage:** It may struggle with highly diverse or random data.
+   - **Introduction:** Move-to-Front (MTF) is a transform-based model that rearranges symbols based on their frequency, potentially improving compression efficiency.
 
 7. [**MTFPC:**](./src/mtfpc/mtfpc.py)
-   - Move-to-Front with Predictive Counting (MTFPC) combines move-to-front with predictive counting for enhanced compression adaptability.
+   - **Advantage:** MTFPC combines MTF with predictive counting, enhancing adaptability to changing patterns.
+   - **Disadvantage:** It may have increased complexity compared to basic MTF.
+   - **Introduction:** Move-to-Front with Predictive Counting (MTFPC) combines move-to-front with predictive counting for enhanced compression adaptability.
 
 8. [**BZIP2:**](./src/bzip2)
-   - BZIP2 is a data compression algorithm that combines the Burrows-Wheeler Transform with Huffman coding.
+   - **Inventor:** Julian Seward
+   - **Advantage:** BZIP2 combines BWT and Huffman coding, offering a good balance between compression ratio and speed.
+   - **Disadvantage:** It may require more memory compared to some other algorithms.
+   - **Introduction:** BZIP2 is a data compression algorithm that combines the Burrows-Wheeler Transform with Huffman coding.
 
 9. [**PPM:**](./src/ppm)
-   - Prediction by Partial Matching (PPM) is a context-based adaptive model that considers symbol context for informed predictions in data compression.
+   - **Inventor:** Jorma Rissanen
+   - **Advantage:** PPM is adaptive, making it effective for a wide range of data types.
+   - **Disadvantage:** It may be computationally intensive and can have slower compression speeds.
+   - **Introduction:** Prediction by Partial Matching (PPM) is a context-based adaptive model that considers symbol context for informed predictions in data compression.
+
 
 ### Benchmarking Methodology
 Our benchmarking methodology though rudimentry includes a stadnardised dataset and well as a variety of parameters to jusdge all these algorithms by. For each algorithm we use the most efficient codes to compress the files and then to decompress them. We have used a standardised procedure for each algorithm.
@@ -142,8 +170,7 @@ In future we plan on copleting this project by impleting atleast 15 algorithms a
 ![](./assets/Compression_time_comparision.png)
 ![](./assets/Decompression_time_comparision.png)
 
-NOTE: 1) We have removed LZ78 and PPM from Compression time comparision Graph due to their exponentially high time consumption.
-      2) We have removed PPM from Decompression time comparision Graph due to its exponentially high time consumption.
+<small>We have removed LZ78 and PPM from Compression time comparision Graph due to their exponentially high time consumption. Also We have removed PPM from Decompression time comparision Graph due to its exponentially high time consumption.</small>
 
 ### Methodology Improvements
 1. Diverse Data Set
@@ -153,6 +180,12 @@ NOTE: 1) We have removed LZ78 and PPM from Compression time comparision Graph du
 Would help us in improving the methodology
 
 ## Contributors
+### Acknowledgements
+1. Introduction to Data Compression by Khalid Sayood
+2. Lossless Compression Handbook by Khalid Sayood
+3. [Data Compression Applets Library](https://www.stringology.org/DataCompression/content.html)
+4. [project by Ellen Chang, Udara Fernando, and Jane Hu for the Sophomore College seminar "The Intellectua Excitement of Computer Science."](https://cs.stanford.edu/people/eroberts/courses/soco/projects/data-compression/overview/siteinfo/index.htm)
+5. [Lossless Compression Wiki](https://en.wikipedia.org/wiki/Lossless_compression)
 
 ### Team Members
 - Kushagra Gupta: Algorithms and Modularity
