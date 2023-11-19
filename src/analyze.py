@@ -16,7 +16,7 @@ algo_name=[]
 compression_time=[]
 decompression_time=[]
 compressed_file_size=[]
-
+compression_ratio=[]
 for i in csv_data:
     if i[0]=="Algo_name":
         pass
@@ -25,16 +25,43 @@ for i in csv_data:
         compression_time.append(int(i[1]))
         decompression_time.append(int(i[2]))
         compressed_file_size.append(int(i[3]))
+        compression_ratio.append(int(i[3])/int(i[4]))
 
 print(algo_name,compression_time,decompression_time,compressed_file_size)
 
-fig,axs = plt.subplots(2,2,figsize=(20,10))
-axs[0,0].bar(algo_name, compression_time, color ='maroon', 
+# fig1 = plt.figure(figsize = (20, 10))
+ 
+# creating the bar plot
+plt.figure(200)
+plt.bar(algo_name, compression_time, color ='maroon', 
         width = 0.4)
-axs[1,0].bar(algo_name, decompression_time, color ='blue', 
-        width = 0.4)
-axs[0,1].bar(algo_name, compressed_file_size, color ='pink', 
-        width = 0.4)
-fig.delaxes(axs[1, 1])
+plt.xlabel("Algorithms")
+plt.ylabel("Compression time")
+plt.title("Compression time comparision graph")
+plt.show()
 
+
+plt.figure(300)
+plt.bar(algo_name, decompression_time, color ='maroon', 
+        width = 0.4)
+plt.xlabel("Algorithms")
+plt.ylabel("Decompression time")
+plt.title("Decompression time comparision graph")
+plt.show()
+
+
+plt.figure(400)
+plt.bar(algo_name, compressed_file_size, color ='maroon', 
+        width = 0.4)
+plt.xlabel("Algorithms")
+plt.ylabel("Compression file size")
+plt.title("Compression file size comparision graph")
+plt.show()
+
+plt.figure(500)
+plt.bar(algo_name, compression_ratio, color ='maroon', 
+        width = 0.4)
+plt.xlabel("Algorithms")
+plt.ylabel("Compression ration")
+plt.title("Compression ratio graph")
 plt.show()
