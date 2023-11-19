@@ -11,21 +11,15 @@
 
 import sys
 import arithmeticcoding, ppmmodel
-
+import csv,os
+from datetime import datetime
 
 # Must be at least -1 and match ppm-compress.py. Warning: Exponential memory usage at O(257^n).
 MODEL_ORDER = 3
 
 
 # Command line main application function.
-def main():
-	inputfile  = "../../results/ppm/compressed_ppm.bin"
-	outputfile = "../../results/ppm/decompressed_ppm.txt"
-	
-	# Perform file decompression
-	with open(inputfile, "rb") as inp, open(outputfile, "w+") as out:
-		bitin = arithmeticcoding.BitInputStream(inp)
-		decompress(bitin, out)
+
 
 
 def decompress(bitin, out):
@@ -70,6 +64,33 @@ def decode_symbol(dec, model, history):
 	# Logic for order = -1
 	return dec.read(model.order_minus1_freqs)
 
+def main():
+	compressed_file  = "../../results/ppm/compressed_ppm.bin"
+	decompressed_file = "../../results/ppm/decompressed_ppm.txt"
+	start_time=datetime.now() 
+
+	# Perform file decompression
+	with open(compressed_file, "rb") as inp, open(decompressed_file, "w+") as out:
+		bitin = arithmeticcoding.BitInputStream(inp)
+		decompress(bitin, out)
+	end_time=datetime.now()
+	decompressed_time=(end_time-start_time).microseconds
+	csv_file="../../results/final-result.csv"
+	csv_data=[]
+	with open(csv_file,"r+") as file:
+		csv_reader=csv.reader(file)
+		for row in csv_reader:
+			csv_data.append(row)
+	found=0
+	for i in csv_data:
+		if i[0]=="ppm":
+			i[2]=decompressed_time
+			found=1
+	if found==0:
+		csv_data.append(["ppm","",decompressed_time,"",""])
+	with open(csv_file,"w+") as file:
+		csv_writer=csv.writer(file)
+		csv_writer.writerows(csv_data)
 
 # Main launcher
 if __name__ == "__main__":

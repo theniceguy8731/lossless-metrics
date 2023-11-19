@@ -1,5 +1,7 @@
 import heapq
 from collections import defaultdict
+import csv,os
+from datetime import datetime
 
 def mtf_encode(data):
     alphabet = list(set(data))
@@ -63,6 +65,8 @@ def main():
     data_file="../../data/data.txt"
     compressed_file="../../results/mtfpc/compressed_mtfpc.bin"
     decompressed_file="../../results/mtfpc/decompressed_mtfpc.bin"
+    
+    start_time=datetime.now()
     with open(data_file,"r") as file:
         data=file.read()
     compressed_data_wite, alphabet, huffman_dict = compress(data)
@@ -72,7 +76,12 @@ def main():
     with open(compressed_file, 'wb+') as file:
         file.write(bytes([padded_length]))
         file.write(output_bytes)
-    
+    end_time=datetime.now()
+    compressed_time=(end_time-start_time).microseconds
+    compressed_file_size=os.path.getsize(compressed_file)
+    data_file_size=os.path.getsize(data_file)
+
+    start_time=datetime.now()
     with open(compressed_file, 'rb') as file:
         padded_length = file.read(1)[0]
         compressed_data_read = ''.join(format(byte, '08b') for byte in file.read())
@@ -80,6 +89,27 @@ def main():
     decompressed_data = decompress(compressed_data_read, alphabet, huffman_dict)
     with open(decompressed_file,"w+") as file:
         file.write(decompressed_data)
+    end_time=datetime.now()
+    decompressed_time=(end_time-start_time).microseconds
+    csv_file="../../results/final-result.csv"
+    csv_data=[]
+    with open(csv_file,"r+") as file:
+        csv_reader=csv.reader(file)
+        for row in csv_reader:
+            csv_data.append(row)
+    found=0
+    for i in csv_data:
+        if i[0]=="mtfpc":
+            i[1]=compressed_time
+            i[2]=decompressed_time
+            i[3]=compressed_file_size
+            i[4]=data_file_size
+            found=1
+    if found==0:
+        csv_data.append(["mtfpc",compressed_time,decompressed_time,compressed_file_size,data_file_size])
+    with open(csv_file,"w+") as file:
+        csv_writer=csv.writer(file)
+        csv_writer.writerows(csv_data)
 if __name__=="__main__":
     main()
 # # Example

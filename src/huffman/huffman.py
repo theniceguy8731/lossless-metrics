@@ -1,6 +1,7 @@
 import heapq
-import os
 from collections import Counter
+import csv,os
+from datetime import datetime
 
 class HuffmanNode:
     def __init__(self, char=None, freq=0):
@@ -92,8 +93,36 @@ input_file = "../../data/data.txt"
 compressed_file = "../../results/huffman/huffman_compressed.bin"
 decompressed_file = "../../results/huffman/huffman_decompressed.txt"
 
+start_time=datetime.now()
 # Compress the file
 compress_file(input_file, compressed_file)
+end_time=datetime.now()
+compressed_time=(end_time-start_time).microseconds
+compressed_file_size=os.path.getsize(compressed_file)
+data_file_size=os.path.getsize(input_file)
 
 # Decompress the file
+start_time=datetime.now()
 decompress_file(compressed_file, decompressed_file)
+end_time=datetime.now()
+decompressed_time=(end_time-start_time).microseconds
+
+csv_file="../../results/final-result.csv"
+csv_data=[]
+with open(csv_file,"r+") as file:
+    csv_reader=csv.reader(file)
+    for row in csv_reader:
+        csv_data.append(row)
+found=0
+for i in csv_data:
+    if i[0]=="huffman":
+        i[1]=compressed_time
+        i[2]=decompressed_time
+        i[3]=compressed_file_size
+        i[4]=data_file_size
+        found=1
+if found==0:
+    csv_data.append(["huffman",compressed_time,decompressed_time,compressed_file_size,data_file_size])
+with open(csv_file,"w+") as file:
+    csv_writer=csv.writer(file)
+    csv_writer.writerows(csv_data)

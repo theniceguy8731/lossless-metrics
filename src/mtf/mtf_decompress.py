@@ -1,4 +1,6 @@
 import varint
+import csv,os
+from datetime import datetime
 
 def search(list_symbols,index):
     return list_symbols[index]
@@ -16,10 +18,12 @@ def mtf_decode(compressed_data,list_symbols,decompressed_list):
 
 
 def main():
+    compressed_file="../../results/mtf/compressed_mtf.bin"
+    decompressed_file="../../results/mtf/decompressed_mtf.txt"
+    start_time=datetime.now() 
     list_symbol= list()
     for i in range(128):
         list_symbol.append(chr(i))
-    compressed_file="../../results/mtf/compressed_mtf.bin"
     with open(compressed_file,"rb") as file:
         encoded_data=file.read()
     i=0
@@ -29,14 +33,31 @@ def main():
         compressed_data.append(num)
         i+=1
     decompressed_list=[]
-    decompressed_file="../../results/mtf/decompressed_mtf.txt"
     mtf_decode(compressed_data,list_symbol,decompressed_list)
     decompressed_data=''
     for i in decompressed_list:
         decompressed_data+=i
     with open(decompressed_file,"w+") as file:
         file.write(decompressed_data)    
+    end_time=datetime.now()
 
+    decompressed_time=(end_time-start_time).microseconds
+    csv_file="../../results/final-result.csv"
+    csv_data=[]
+    with open(csv_file,"r+") as file:
+        csv_reader=csv.reader(file)
+        for row in csv_reader:
+            csv_data.append(row)
+    found=0
+    for i in csv_data:
+        if i[0]=="mtf":
+            i[2]=decompressed_time
+            found=1
+    if found==0:
+        csv_data.append(["mtf","",decompressed_time,"",""])
+    with open(csv_file,"w+") as file:
+        csv_writer=csv.writer(file)
+        csv_writer.writerows(csv_data)
 
 if __name__ == "__main__":
     main()
