@@ -142,6 +142,9 @@ In future we plan on copleting this project by impleting atleast 15 algorithms a
 ![](./assets/Compression_time_comparision.png)
 ![](./assets/Decompression_time_comparision.png)
 
+NOTE: 1) We have removed LZ78 and PPM from Compression time comparision Graph due to their exponentially high time consumption.
+      2) We have removed PPM from Decompression time comparision Graph due to its exponentially high time consumption.
+
 ### Methodology Improvements
 1. Diverse Data Set
 2. More Efficient Implementations
