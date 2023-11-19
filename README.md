@@ -133,7 +133,7 @@ Our benchmarking methodology though rudimentry includes a stadnardised dataset a
 Some of the challenges we faced while making of this project including the lack of knowledge and mathematical experience in the field as most of the data compression algorithms studies and and most of the higher level algorithms expected us to have a good amount of mathematical prowess in probabilistic models, information theory, entropy and markov chains. However we were successful in implementing most of the algorithms on our own.
 Some of the advanced algorithms were taken from implementations done by the open source community along with the due credit given to them in the acknowledgments.
 
-### Future Python Tool
+### Future Vision
 In future we plan on copleting this project by impleting atleast 15 algorithms and making this project moduler as well as converting it into a python tool which can be used to compare the performance of all these 15 algorithms on any data set as per the liking of the user.
 
 ### Observations
